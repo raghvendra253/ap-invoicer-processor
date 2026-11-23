@@ -1,0 +1,371 @@
+{
+  "policy_rules": {
+    "tolerance_percent": 2.0,
+    "tolerance_max_amount": 250.0,
+    "duplicate_window_days": 14
+  },
+  "vendors": [
+    {
+      "vendor_id": "V-101",
+      "name": "Acme Cloud Solutions Inc.",
+      "status": "APPROVED"
+    },
+    {
+      "vendor_id": "V-102",
+      "name": "Apex Logistics Group",
+      "status": "APPROVED"
+    },
+    {
+      "vendor_id": "V-103",
+      "name": "Nova Creative Studio",
+      "status": "APPROVED"
+    },
+    {
+      "vendor_id": "V-104",
+      "name": "Summit Office Systems",
+      "status": "APPROVED"
+    }
+  ],
+  "purchase_orders": [
+    {
+      "po_number": "PO-2026-101",
+      "vendor_name": "Acme Cloud Solutions Inc.",
+      "total_amount": 4500.0,
+      "previously_billed": 4500.0,
+      "description": "Q3 Cloud Infrastructure & Support"
+    },
+    {
+      "po_number": "PO-2026-102",
+      "vendor_name": "Apex Logistics Group",
+      "total_amount": 15000.0,
+      "previously_billed": 16200.0,
+      "description": "Regional Freight & Warehousing"
+    },
+    {
+      "po_number": "PO-2026-103",
+      "vendor_name": "Nova Creative Studio",
+      "total_amount": 3200.0,
+      "previously_billed": 0.0,
+      "description": "Brand Refresh & Website Graphics"
+    },
+    {
+      "po_number": "PO-2026-104",
+      "vendor_name": "Summit Office Systems",
+      "total_amount": 5000.0,
+      "previously_billed": 0.0,
+      "description": "Annual Ergonomic Hardware Bundle"
+    }
+  ],
+  "run_history": [
+    {
+      "timestamp": "2026-10-15 09:30:00",
+      "filename": "seed_invoice_882.pdf",
+      "invoice_number": "INV-882",
+      "vendor_name": "Acme Cloud Solutions Inc.",
+      "invoice_date": "2026-10-15",
+      "total_amount": 2400.0,
+      "po_number": "PO-2026-099",
+      "status": "AUTO-APPROVED",
+      "file_hash": "seed_hash_882",
+      "key_reason": "Pre-seeded baseline invoice for duplicate & near-duplicate validation.",
+      "reasoning": [
+        "Pre-seeded historical baseline invoice.",
+        "Used to test 14-day duplicate window detection."
+      ],
+      "extracted_fields": {
+        "vendor_name": "Acme Cloud Solutions Inc.",
+        "invoice_number": "INV-882",
+        "invoice_date": "2026-10-15",
+        "po_reference": "PO-2026-099",
+        "total_amount": 2400.0,
+        "tax_mode": "embedded",
+        "line_items": [
+          {
+            "description": "Historical Cloud Infrastructure Billing",
+            "amount": 2400.0
+          }
+        ],
+        "missing_fields": [],
+        "extraction_confidence": 1.0
+      },
+      "stage_summaries": [
+        {
+          "stage_number": 1,
+          "name": "PDF Inspection",
+          "status": "passed",
+          "summary": "Baseline PDF."
+        },
+        {
+          "stage_number": 2,
+          "name": "AI Extraction",
+          "status": "passed",
+          "summary": "Extracted $2,400."
+        },
+        {
+          "stage_number": 3,
+          "name": "Vendor Gate",
+          "status": "passed",
+          "summary": "Approved vendor."
+        },
+        {
+          "stage_number": 4,
+          "name": "PO Matching",
+          "status": "passed",
+          "summary": "Matched PO-2026-099."
+        },
+        {
+          "stage_number": 5,
+          "name": "Math Validation",
+          "status": "passed",
+          "summary": "Math valid."
+        },
+        {
+          "stage_number": 6,
+          "name": "Decision",
+          "status": "passed",
+          "summary": "Auto-approved baseline."
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-11-23 22:10:32",
+      "filename": "02_split_po_overbill_apex.pdf",
+      "invoice_number": "INV-502",
+      "vendor_name": "Apex Logistics Group",
+      "invoice_date": "2026-10-21",
+      "total_amount": 6200.0,
+      "po_number": "PO-2026-102",
+      "status": "MANUALLY APPROVED",
+      "file_hash": "070316d466c426eba9e881bfb0e129eaf362d66a506cc8512ea01ab245bda436",
+      "key_reason": "Human-in-the-loop manual override granted by AP reviewer.",
+      "reasoning": [
+        "Cumulative spend exceeds Purchase Order budget tolerance: PO Over-Utilization / Exceeds Tolerance (+8.0% / +$1,200.00 > 2.0% / $250.00).",
+        "Human-in-the-loop manual override granted by AP reviewer."
+      ],
+      "extracted_fields": {
+        "vendor_name": "Apex Logistics Group",
+        "invoice_number": "INV-502",
+        "invoice_date": "2026-10-21",
+        "po_reference": "PO-2026-102",
+        "subtotal": 5700.0,
+        "tax_amount": 500.0,
+        "tax_mode": "separated",
+        "total_amount": 6200.0,
+        "line_items": [
+          {
+            "description": "Midwest Regional Freight Linehaul & Dedicated Hauling",
+            "amount": 3700.0
+          },
+          {
+            "description": "Cross-Dock Warehousing, Pallet Storage & Handling",
+            "amount": 2000.0
+          }
+        ],
+        "missing_fields": [],
+        "extraction_confidence": 1.0
+      },
+      "stage_summaries": [
+        {
+          "stage_number": 1,
+          "name": "PDF Inspection & Type Classification",
+          "status": "passed",
+          "summary": "Classified as native digital PDF (871 chars extracted across 1 page(s))"
+        },
+        {
+          "stage_number": 2,
+          "name": "AI Multimodal Field Extraction",
+          "status": "passed",
+          "summary": "Extracted Apex Logistics Group (INV-502) - Total: $6,200.00"
+        },
+        {
+          "stage_number": 3,
+          "name": "Vendor Master & Duplicate Gate",
+          "status": "passed",
+          "summary": "PASSED: Approved vendor 'Apex Logistics Group' (V-102), no duplicates detected"
+        },
+        {
+          "stage_number": 4,
+          "name": "Purchase Order Matching & Cumulative Spend",
+          "status": "passed",
+          "summary": "PASSED: Explicit PO match 'PO-2026-102' | Billed: $10,000.00 + Current: $6,200.00 = Cumulative: $16,200.00 / Budget: $15,000.00"
+        },
+        {
+          "stage_number": 5,
+          "name": "Deterministic Math & Tolerance Validation",
+          "status": "failed",
+          "summary": "FAILED: PO Over-Utilization / Exceeds Tolerance (+8.0% / +$1,200.00 > 2.0% / $250.00)"
+        }
+      ],
+      "next_action": {
+        "action": "SEND_VENDOR_EMAIL",
+        "recipient": "billing@apexlogisticsgroup.com",
+        "subject": "Notice regarding Invoice INV-502 - Action Required",
+        "body": "Dear Apex Logistics Group,\n\nWe are currently reviewing your invoice INV-502.\nOur automated Accounts Payable system has flagged the following items requiring clarification:\n- Cumulative spend exceeds Purchase Order budget tolerance: PO Over-Utilization / Exceeds Tolerance (+8.0% / +$1,200.00 > 2.0% / $250.00).\n\nPlease provide an amended invoice or confirm PO reference at your earliest convenience.\n\nSincerely,\nAccounts Payable Operations",
+        "escalation_team": "AP_PROCUREMENT_REVIEW"
+      }
+    },
+    {
+      "timestamp": "2026-11-23 22:10:37",
+      "filename": "01_happy_path_acme.pdf",
+      "invoice_number": "INV-2026-101",
+      "vendor_name": "Acme Cloud Solutions Inc.",
+      "invoice_date": "2026-10-20",
+      "total_amount": 4500.0,
+      "po_number": "PO-2026-101",
+      "status": "AUTO-APPROVED",
+      "file_hash": "b1f2bb0146287984b8ed97e569d47c4ba55ed2b6dc7de2a80216ab269a0058f0",
+      "key_reason": "Vendor 'Acme Cloud Solutions Inc.' (V-101) is verified and approved.",
+      "reasoning": [
+        "Vendor 'Acme Cloud Solutions Inc.' (V-101) is verified and approved.",
+        "Matched Purchase Order 'PO-2026-101' explicitly.",
+        "Invoice math is verified: Subtotal ($4,100.00) + Tax ($400.00) = $4,500.00 vs Total ($4,500.00).",
+        "PO Cumulative Spend check: Cumulative spend ($4,500.00) within PO limit ($4,500.00).",
+        "All mandatory invoice fields are complete and verified."
+      ],
+      "extracted_fields": {
+        "vendor_name": "Acme Cloud Solutions Inc.",
+        "invoice_number": "INV-2026-101",
+        "invoice_date": "2026-10-20",
+        "po_reference": "PO-2026-101",
+        "subtotal": 4100.0,
+        "tax_amount": 400.0,
+        "tax_mode": "separated",
+        "total_amount": 4500.0,
+        "line_items": [
+          {
+            "description": "Production Cloud Infrastructure Hosting - Monthly Tier",
+            "amount": 3500.0
+          },
+          {
+            "description": "24/7 Premium Managed Systems Support & Monitoring",
+            "amount": 600.0
+          }
+        ],
+        "missing_fields": [],
+        "extraction_confidence": 1.0
+      },
+      "stage_summaries": [
+        {
+          "stage_number": 1,
+          "name": "PDF Inspection & Type Classification",
+          "status": "passed",
+          "summary": "Classified as native digital PDF (839 chars extracted across 1 page(s))"
+        },
+        {
+          "stage_number": 2,
+          "name": "AI Multimodal Field Extraction",
+          "status": "passed",
+          "summary": "Extracted Acme Cloud Solutions Inc. (INV-2026-101) - Total: $4,500.00"
+        },
+        {
+          "stage_number": 3,
+          "name": "Vendor Master & Duplicate Gate",
+          "status": "passed",
+          "summary": "PASSED: Approved vendor 'Acme Cloud Solutions Inc.' (V-101), no duplicates detected"
+        },
+        {
+          "stage_number": 4,
+          "name": "Purchase Order Matching & Cumulative Spend",
+          "status": "passed",
+          "summary": "PASSED: Explicit PO match 'PO-2026-101' | Billed: $0.00 + Current: $4,500.00 = Cumulative: $4,500.00 / Budget: $4,500.00"
+        },
+        {
+          "stage_number": 5,
+          "name": "Deterministic Math & Tolerance Validation",
+          "status": "passed",
+          "summary": "PASSED: Math verified (Subtotal ($4,100.00) + Tax ($400.00) = $4,500.00 vs Total ($4,500.00)). Cumulative spend ($4,500.00) within PO limit ($4,500.00)"
+        }
+      ],
+      "next_action": {
+        "action": "POST_PAYMENT_VOUCHER",
+        "erp_reference": "VOUCH-2026-INV-2026-101",
+        "vendor_id": "V-101",
+        "vendor_name": "Acme Cloud Solutions Inc.",
+        "invoice_number": "INV-2026-101",
+        "po_number": "PO-2026-101",
+        "posting_amount": 4500.0,
+        "currency": "USD",
+        "payment_terms": "Net 30",
+        "gl_account": "2100-ACCOUNTS-PAYABLE",
+        "status": "QUEUED_FOR_DISBURSEMENT"
+      }
+    },
+    {
+      "timestamp": "2026-11-23 22:10:56",
+      "filename": "03_scanned_missing_fields_nova.pdf",
+      "invoice_number": "NCS-774",
+      "vendor_name": "Nova Creative Studio",
+      "invoice_date": "2026-11-23",
+      "total_amount": 3200.0,
+      "po_number": "PO-2026-103",
+      "status": "REJECTED",
+      "file_hash": "a8f30eddbd99bd4400e4a899e8a4c4fc625257b60374a152a5d5e990255c21df",
+      "key_reason": "Invoice manually rejected during human review.",
+      "reasoning": [
+        "Missing mandatory invoice field(s): invoice_date.",
+        "Implicit PO match to 'PO-2026-103' based on description and amount proximity; requires human confirmation.",
+        "Invoice manually rejected during human review."
+      ],
+      "extracted_fields": {
+        "vendor_name": "Nova Creative Studio",
+        "invoice_number": "NCS-774",
+        "invoice_date": null,
+        "po_reference": null,
+        "subtotal": 3200.0,
+        "tax_amount": 0.0,
+        "tax_mode": "separated",
+        "total_amount": 3200.0,
+        "line_items": [
+          {
+            "description": "Brand Refresh & Website Graphics Package",
+            "amount": 3200.0
+          }
+        ],
+        "missing_fields": [
+          "invoice_date",
+          "po_reference"
+        ],
+        "extraction_confidence": 1.0
+      },
+      "stage_summaries": [
+        {
+          "stage_number": 1,
+          "name": "PDF Inspection & Type Classification",
+          "status": "passed",
+          "summary": "Classified as scanned raster PDF (0 chars of text; OCR/vision required)"
+        },
+        {
+          "stage_number": 2,
+          "name": "AI Multimodal Field Extraction",
+          "status": "warning",
+          "summary": "Extracted Nova Creative Studio (NCS-774) - Total: $3,200.00 [Missing: invoice_date, po_reference]"
+        },
+        {
+          "stage_number": 3,
+          "name": "Vendor Master & Duplicate Gate",
+          "status": "passed",
+          "summary": "PASSED: Approved vendor 'Nova Creative Studio' (V-103), no duplicates detected"
+        },
+        {
+          "stage_number": 4,
+          "name": "Purchase Order Matching & Cumulative Spend",
+          "status": "warning",
+          "summary": "WARNING: Implicit PO match to 'PO-2026-103' (Brand Refresh & Website Graphics) -- requires human confirmation"
+        },
+        {
+          "stage_number": 5,
+          "name": "Deterministic Math & Tolerance Validation",
+          "status": "passed",
+          "summary": "PASSED: Math verified (Subtotal ($3,200.00) + Tax ($0.00) = $3,200.00 vs Total ($3,200.00)). Cumulative spend ($3,200.00) within PO limit ($3,200.00)"
+        }
+      ],
+      "next_action": {
+        "action": "SEND_VENDOR_EMAIL",
+        "recipient": "billing@novacreativestudio.com",
+        "subject": "Notice regarding Invoice NCS-774 - Action Required",
+        "body": "Dear Nova Creative Studio,\n\nWe are currently reviewing your invoice NCS-774.\nOur automated Accounts Payable system has flagged the following items requiring clarification:\n- Missing mandatory invoice field(s): invoice_date.\n- Implicit PO match to 'PO-2026-103' based on description and amount proximity; requires human confirmation.\n\nPlease provide an amended invoice or confirm PO reference at your earliest convenience.\n\nSincerely,\nAccounts Payable Operations",
+        "escalation_team": "AP_PROCUREMENT_REVIEW"
+      }
+    }
+  ]
+}
